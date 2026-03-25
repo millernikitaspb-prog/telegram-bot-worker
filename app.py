@@ -76,4 +76,9 @@ def валюта(message):
 def ответ(message):
     bot.send_message(message.chat.id, "Выбери команду из доступных: /погода «город», /курсы, /меню или /время")
 
+@bot.message_handler(commands=["шутка"])
+def шутка(message):
+    data = requests.get("https://official-joke-api.appspot.com/random_joke").json()
+    bot.send_message(message.chat.id, f"{data['setup']}\n\n{data['punchline']}")
+
 bot.polling()
