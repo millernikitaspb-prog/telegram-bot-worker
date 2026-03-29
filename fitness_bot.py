@@ -76,6 +76,9 @@ def имт(message):
 def напоминание(message):
 	time_str = message.text.replace("/напоминание", "").strip()
 	if time_str:
+		user_time = datetime.datetime.strptime(time_str, "%H:%M")
+		utc_time = user_time - datetime.timedelta(hours=3)
+		utc_str = utc_time.strptime("%H:%M")
 		conn = get_conn()
 		cursor = conn.cursor()
 		cursor.execute("UPDATE users SET reminder_time = %s WHERE chat_id = %s", (time_str, message.chat.id))
