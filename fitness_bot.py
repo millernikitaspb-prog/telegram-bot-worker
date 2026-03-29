@@ -88,7 +88,7 @@ def напоминание(message):
 
 def run_scheduler():
 	while True:
-		now = datetime.datetime.now().strftime("%H:%M")
+		now = datetime.datetime.utcnow().strftime("%H:%M")
 		conn = get_conn()
 		cursor = conn.cursor()
 		cursor.execute("SELECT chat_id, name FROM users WHERE reminder_time = %s", (now,))
