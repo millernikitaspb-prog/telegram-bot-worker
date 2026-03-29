@@ -81,7 +81,7 @@ def напоминание(message):
 		utc_str = utc_time.strptime("%H:%M")
 		conn = get_conn()
 		cursor = conn.cursor()
-		cursor.execute("UPDATE users SET reminder_time = %s WHERE chat_id = %s", (time_str, message.chat.id))
+		cursor.execute("UPDATE users SET reminder_time = %s WHERE chat_id = %s", (utc_str, message.chat.id))
 		conn.commit()
 		cursor.close()
 		conn.close()
